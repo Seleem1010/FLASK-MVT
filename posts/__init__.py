@@ -1,0 +1,1 @@
+from Flask_Mvt.posts import postblueprints,views
