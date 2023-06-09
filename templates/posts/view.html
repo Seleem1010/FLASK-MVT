@@ -3,11 +3,11 @@
 <h2>Title: {{post.title}}</h2>
 <div class="card" style="width: 18rem">
   {% if post.image %}
-    <img src="data:image/png;base64,{{ post.get_image_data()|b64encode }}" alt="Post Image" width=100 height=100>
-{% endif %}
+            <img src="{{ url_for('static', filename=post.image) }}" alt="{{ post.title }}" width="100" height="100">
+          {% endif %}
   <div class="card-body">
     <p class="card-text">Body: {{post.body}}</p>
-    <p class="card-text">Category:{{post.category_id}}</p>
+    <p class="card-text">Category:{{category.name}}</p>
     <p class="card-text">Created at: {{post.created_at}}</p>
     <p class="card-text">Updated at: {{post.updated_at}}</p>
   </div>

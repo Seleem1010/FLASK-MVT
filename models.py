@@ -28,20 +28,21 @@ class Post(db.Model):
     def __str__(self):
         return self.title
     
-    def get_image_data(self):
-        if self.image is not None:
-            return base64.b64decode(self.image)
-        return None
+    
 
     def delete_post(self):
         db.session.delete(self)
         db.session.commit()
         return True
 
+    @classmethod
+    def get_specific_object(cls, id):
+        return  cls.query.get_or_404(id)
+    
     @property
     def get_view_url(self):
-        return url_for("Flask_Mvt.posts_view", id=self.id)
+        return url_for("MVT.posts_view", id=self.id)
 
     @property
     def get_delete_url(self):
-        return url_for("Flask_Mvt.posts_delete", id=self.id)
+        return url_for("MVT.posts_delete", id=self.id)

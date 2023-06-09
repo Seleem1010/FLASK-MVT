@@ -27,21 +27,27 @@
   </div>
   <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">Image</label>
+    {% if post.image %}
+      <img src="{{ url_for('static', filename=post.image) }}" alt="{{ post.title }}" width="200" height="200">
+    {% endif %}
     <input
       type="file"
       name="image"
       class="form-control"
       id="exampleInputPassword1"
-      value="{{post.image}}"
       accept=".png"
     />
   </div>
   <div class="mb-3">
-    <select name="course">
-              {%for course in courses%}
-                  <option value="{{category.id}}">{{category.name}}</option>
-              {%endfor%}
-    </select> 
+    <select name="category_id">
+      {%for category in categorys%}
+          <option value= "{{category.id}}"
+          {% if category.id == post.category_id %}
+                  selected
+          {%endif%}
+          >{{category.name}}</option>
+      {%endfor%}
+  </select> 
   </div>
 
   <button type="submit" class="btn btn-primary">Update</button>
